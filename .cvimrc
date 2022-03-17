@@ -19,7 +19,6 @@ map t :tabnew
 map g :tabnew google
 map / openSearchBar
 map : openCommandBar
-command :q :quit
 command g tabnew google
 
 let completionengines = ["google", "amazon", "imdb", "dogpile"]

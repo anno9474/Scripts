@@ -1,0 +1,40 @@
+" help-page:  chrome-extension://ihlenndgcmojhcghmfjfneahoeklbjjh/pages/mappings.html#cvimrc
+
+"Settings
+
+unmap all
+
+let scrollstep = 75
+let barposition = "bottom"
+let mapleader = ","
+
+set typelinkhints
+set numerichints
+
+set smoothscroll
+set localconfig
+set noautofocus
+
+"movement
+map j scrollUp
+map k scrollDown
+map h scrollLeft
+map l scrollRight
+
+map gg scrollToTop
+map b :bookmarks
+map t :tabnew
+map g :tabnew google
+
+" alias ':g' to ':tabnew google'
+command g tabnew google
+
+let completionengines = ["google", "amazon", "imdb", "dogpile"]
+
+let searchalias g = "google" " Create a shortcut for search engines.
+                             " For example, typing ':tabnew g example'
+                             " would act the same way as ':tabnew google example'
+                             
+site '*://*.github.com/*' {
+     unmap t
+     }

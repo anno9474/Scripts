@@ -22,9 +22,19 @@ map h scrollLeft
 map l scrollRight
 
 map gg scrollToTop
+
+"search
+
 map b :bookmarks
 map t :tabnew
 map g :tabnew google
+map / openSearchBar
+map : openCommandBar
+
+
+
+" alias ':q' to ':quit'
+command :q :quit
 
 " alias ':g' to ':tabnew google'
 command g tabnew google

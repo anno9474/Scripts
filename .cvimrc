@@ -9,8 +9,8 @@ set smoothscroll
 set localconfig
 set noautofocus
 
-map j scrollUp
-map k scrollDown
+map j scrollDown
+map k scrollUp
 map h scrollLeft
 map l scrollRight
 

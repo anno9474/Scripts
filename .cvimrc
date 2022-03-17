@@ -9,6 +9,7 @@ let barposition = "bottom"
 let mapleader = ","
 
 set typelinkhintsdelay = 300
+set numerichints = false
 
 set smoothscroll
 set localconfig

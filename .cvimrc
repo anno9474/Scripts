@@ -2,9 +2,8 @@ unmap all
 
 let scrollstep = 75
 let barposition = "bottom"
-let mapleader = ","
 
-set typelinkhintsdelay = 300
+
 set smoothscroll
 set localconfig
 set noautofocus
@@ -17,8 +16,6 @@ map l scrollRight
 map b :bookmarks
 map t :tabnew
 map g :tabnew google
-map / openSearchBar
-map : openCommandBar
 command g tabnew google
 
 let completionengines = ["google", "amazon", "imdb", "dogpile"]

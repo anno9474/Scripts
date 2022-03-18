@@ -1,0 +1,220 @@
+# If you come from bash you might have to change your $PATH.
+  # export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+# Path to your oh-my-zsh installation.
+export ZSH="/Users/bwalter/.oh-my-zsh"
+
+# Set name of the theme to load --- if set to "random", it will
+  # load a random theme each time oh-my-zsh is loaded, in which case,
+    # to know which specific one was loaded, run: echo $RANDOM_THEME
+    # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+    ZSH_THEME="robbyrussell_customized"
+
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
+# If set to an empty array, this variable will have no effect.
+  # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+
+# Uncomment the following line to use case-sensitive completion.
+  # CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+  # HYPHEN_INSENSITIVE="true"
+
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+  # COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+  # under VCS as dirty. This makes repository status check for large repositories
+    # much, much faster.
+    # DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+  # stamp shown in the history command output.
+  # You can set one of the optional three formats:
+  # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+  # or set a custom format using the strftime function format specifications,
+  # see 'man strftime' for details.
+    # HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load?
+# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(
+  git
+  bundler
+  rails
+  ruby
+  docker
+)
+
+source $ZSH/oh-my-zsh.sh
+
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+  # if [[ -n $SSH_CONNECTION ]]; then
+    #   export EDITOR='vim'
+    # else
+      #   export EDITOR='mvim'
+      # fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# ssh
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+  #
+  # Example aliases
+  # alias zshconfig="mate ~/.zshrc"
+  # alias ohmyzsh="mate ~/.oh-my-zsh"
+  # Initialise rbenv
+  if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+# Oracle Development: ruby-oci8
+export ORACLE_HOME=/opt/oracle/instantclient_12_1
+export DYLD_LIBRARY_PATH=$ORACLE_HOME
+export OCI_DIR=$ORACLE_HOME
+export NLS_LANG=GERMAN_GERMANY.UTF8
+export NLS_COMP=LINGUISTIC
+export NLS_SORT=BINARY_CI
+export ORACLE_SYSTEM_PASSWORD=oracle
+export PATH=/Users/bwalter/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/opt/fzf/bin:/Users/bwalter/bin
+export HTTP_PROXY="${http_proxy}"
+export HTTPS_PROXY="${https_proxy}"
+export no_proxy=localhost,127.0.0.0/8,*.local
+export http_proxy=`scutil --proxy | awk '\
+  /HTTPEnable/ { enabled = $3; } \
+  /HTTPProxy/ { server = $3; } \
+  /HTTPPort/ { port = $3; } \
+  END { if (enabled == "1") { print "http://" server ":" port; } }'`
+export https_proxy=`scutil --proxy | awk '\
+  /HTTPSEnable/ { enabled = $3; } \
+  /HTTPSProxy/ { server = $3; } \
+  /HTTPSPort/ { port = $3; } \
+  END { if (enabled == "1") { print "http://" server ":" port; } }'`
+#export PATH="/usr/local/opt/ruby/bin:$PATH"
+#Room for own aliases!
+  #aliad switching projects
+  hash -d fu="$HOME/Projekte"
+  alias fu='~fu'
+  alias bi='bundle install'
+  alias Work='work *'
+  alias cls='clear'
+  alias w='work'
+  alias conf="vim ~/.tmux.conf"
+  alias wtc='curl -s http://whatthecommit.com/index.txt'
+  alias yolo='git commit -m "$(curl -s http://whatthecommit.com/index.txt)"'
+  setopt cdablevars
+  work() {
+    case ${1} in
+      edit)
+        #editing the confing file
+        vim /Users/bwalter/.zshrc
+        ;;
+      parrot)
+        #this is a parrot dancong for fun
+          curl parrot.live
+          ;;
+        reload)
+          #Reloading the config
+          source /Users/bwalter/.zshrc
+          echo -e "\x1B[1;31m RELOAD THE CONFIG \x1B[0m"
+          ;;
+        start)
+          #this starts a server and starts doracle
+          rs
+          ;;
+        -help)
+          #This is the Help
+          print "\e[31mThese are the current Commands:\e[\m\n"
+          print "\e[32mparrot -A verry Important family Member\e[\m\n"
+          print "\e[32medit -You will touch the config\e[\m\n"
+          print "\e[32mreload -Reloads the config\e[\m\n"
+          ;;
+        *)
+          echo 'This is not the right command. Type work -help to get the Commands.'
+          ;;
+      esac
+    }
+
+
+  doracle() {
+    cd /Users/bwalter/Documents/Oracle
+    if [[ $1 == 'up' ]]; then
+      docker-compose up -d
+    else
+      docker-compose down
+    fi
+    cd -
+  }
+#Romans proxy settings
+proxy_unset() {
+  unset HTTP_PROXY
+  unset HTTPS_PROXY
+}
+proxy_set() {
+  export HTTP_PROXY=http://10.129.11.22:9090
+  export HTTPS_PROXY=http://10.129.11.22:9090
+}
+#Florians Proxy settings
+set_proxy(){
+   export http_proxy=`scutil --proxy | awk '\
+     /HTTPEnable/ { enabled = $3; } \
+     /HTTPProxy/ { server = $3; } \
+     /HTTPPort/ { port = $3; } \
+   END { if (enabled == "1") { print "http://" server ":" port; } }'`
+   export https_proxy=`scutil --proxy | awk '\
+     /HTTPSEnable/ { enabled = $3; } \
+     /HTTPSProxy/ { server = $3; } \
+     /HTTPSPort/ { port = $3; } \
+   END { if (enabled == "1") { print "http://" server ":" port; } }'`
+   export HTTP_PROXY="${http_proxy}"
+   export HTTPS_PROXY="${https_proxy}"
+   export no_proxy=localhost,127.0.0.0/8,.fuchs-gewuerze.local
+   echo -e "\x1B[1;31m ####Proxy has been set#### \x1B[0m"
+
+ }
+
+ unset_proxy(){
+   unset http_proxy
+   unset https_proxy
+   unset HTTP_PROXY
+   unset HTTPS_PROXY
+   unset no_proxy
+   echo -e "\x1B[1;31m ####Proxy has been unset####  \x1B[0m"
+ }
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
